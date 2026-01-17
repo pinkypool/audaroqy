@@ -7,16 +7,16 @@ import { ChevronLeft, Home, Gamepad2, Brain, Zap } from 'lucide-react';
 const GAMES = [
     {
         id: 'match',
-        title: 'Найди пару',
-        description: 'Соедини английские слова с русскими переводами',
+        title: 'Match Pairs',
+        description: 'Connect English words with their translations',
         icon: '🎯',
         color: 'from-green-500 to-emerald-600',
         href: '/games/match'
     },
     {
         id: 'coming1',
-        title: 'Собери предложение',
-        description: 'Расставь слова в правильном порядке',
+        title: 'Build Sentence',
+        description: 'Arrange words in the correct order',
         icon: '🧩',
         color: 'from-blue-500 to-indigo-600',
         href: '#',
@@ -24,8 +24,8 @@ const GAMES = [
     },
     {
         id: 'coming2',
-        title: 'Угадай слово',
-        description: 'Угадай слово по картинке',
+        title: 'Guess the Word',
+        description: 'Guess the word from the picture',
         icon: '🖼️',
         color: 'from-purple-500 to-pink-600',
         href: '#',
@@ -47,12 +47,12 @@ export default function GamesPage() {
                     </Link>
                     <h1 className="text-2xl font-bold flex items-center gap-2">
                         <Gamepad2 className="text-green-500" />
-                        Мини-игры
+                        Mini Games
                     </h1>
                 </div>
 
                 <p className="text-neutral-400 mb-8">
-                    Играй и учи английский одновременно! 🎮
+                    Play and learn English at the same time! 🎮
                 </p>
 
                 <div className="space-y-4">
@@ -70,7 +70,7 @@ export default function GamesPage() {
                                         <div>
                                             <h3 className="font-bold text-lg">{game.title}</h3>
                                             <p className="text-sm text-neutral-500">{game.description}</p>
-                                            <p className="text-xs text-neutral-600 mt-1">🔒 Скоро</p>
+                                            <p className="text-xs text-neutral-600 mt-1">🔒 Coming Soon</p>
                                         </div>
                                     </div>
                                 </div>

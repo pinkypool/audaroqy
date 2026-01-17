@@ -28,18 +28,18 @@ export default function SettingsPage() {
                     <Link href="/levels" className="text-neutral-400 hover:text-white transition-colors">
                         <ChevronLeft size={24} />
                     </Link>
-                    <h1 className="text-2xl font-bold">Настройки</h1>
+                    <h1 className="text-2xl font-bold">Settings</h1>
                 </div>
 
                 <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6">
                     <div className="flex items-center gap-3 mb-4">
                         <Key className="text-green-500" size={24} />
-                        <h2 className="text-lg font-bold">API Ключ Google Gemini</h2>
+                        <h2 className="text-lg font-bold">Google Gemini API Key</h2>
                     </div>
 
                     <p className="text-neutral-400 text-sm mb-4">
-                        Для работы переводов нужен API ключ от Google Gemini.
-                        Получите его бесплатно на <a href="https://aistudio.google.com/app/apikey" target="_blank" className="text-green-400 underline">Google AI Studio</a>
+                        To use translations, you need a Google Gemini API key.
+                        Get it for free at <a href="https://aistudio.google.com/app/apikey" target="_blank" className="text-green-400 underline">Google AI Studio</a>
                     </p>
 
                     <input
@@ -60,19 +60,19 @@ export default function SettingsPage() {
                         {saved ? (
                             <>
                                 <Check size={20} />
-                                Сохранено!
+                                Saved!
                             </>
                         ) : (
                             <>
                                 <Save size={20} />
-                                Сохранить
+                                Save
                             </>
                         )}
                     </button>
                 </div>
 
                 <p className="text-neutral-600 text-xs text-center mt-6">
-                    Ваш ключ хранится только локально в вашем браузере.
+                    Your key is stored locally in your browser.
                 </p>
             </div>
         </div>

@@ -4,6 +4,22 @@ import { getOfflineTranslation } from './dictionary';
 // Use internal API route for Gemini
 const GEMINI_API_URL = '/api/gemini';
 
+const LANGUAGE_NAMES: Record<string, string> = {
+    'ru': 'Russian',
+    'kz': 'Kazakh',
+    'es': 'Spanish',
+    'fr': 'French',
+    'de': 'German',
+    'it': 'Italian',
+    'tr': 'Turkish',
+    'pt': 'Portuguese',
+    'zh': 'Chinese',
+    'ja': 'Japanese',
+    'ko': 'Korean'
+};
+
+const getLangName = (code: string) => LANGUAGE_NAMES[code] || code;
+
 interface ChatMessage {
     role: 'user' | 'system' | 'assistant';
     content: string;
@@ -56,7 +72,7 @@ async function callAI(prompt: string, retries = 3): Promise<string> {
 export async function translateWord(
     word: string,
     context?: string,
-    targetLang: 'ru' | 'kz' = 'ru'
+    targetLang: string = 'ru'
 ): Promise<{ translation: string }> {
     const cacheKey = `word_${word.toLowerCase()}_${targetLang}`;
     const cached = getFromCache<{ translation: string }>(cacheKey);
@@ -71,7 +87,7 @@ export async function translateWord(
         }
     }
 
-    const langName = targetLang === 'ru' ? 'Russian' : 'Kazakh';
+    const langName = getLangName(targetLang);
     const prompt = `Translate the English word "${word}" to ${langName}.${context ? ` Context: "${context}".` : ''} 
   Respond with ONLY a JSON object: {"translation": "your_translation_here"}. 
   Do not explain.`;
@@ -95,6 +111,7 @@ export async function translateWord(
             const translation = parsed.translation || parsed.result || '';
 
             if (!translation || translation.toLowerCase() === word.toLowerCase()) {
+                // Only check for Cyrillic if target is Russian or Kazakh
                 if ((targetLang === 'kz' || targetLang === 'ru') && !/[а-яёіїґүәөұү]/i.test(translation)) {
                     attempts++;
                     continue;
@@ -115,13 +132,13 @@ export async function translateWord(
 /** Translate a sentence. Returns { translation }. */
 export async function translateSentence(
     sentence: string,
-    targetLang: 'ru' | 'kz' = 'ru'
+    targetLang: string = 'ru'
 ): Promise<{ translation: string }> {
     const cacheKey = `sentence_${sentence}_${targetLang}`;
     const cached = getFromCache<{ translation: string }>(cacheKey);
     if (cached) return cached;
 
-    const langName = targetLang === 'ru' ? 'Russian' : 'Kazakh';
+    const langName = getLangName(targetLang);
     const prompt = `Translate this English sentence to ${langName}: "${sentence}". Respond with ONLY the ${langName} translation, nothing else.`;
 
     let attempts = 0;
@@ -154,13 +171,13 @@ export async function translateSentence(
 /** Explain grammar. Returns { grammar }. */
 export async function explainGrammar(
     sentence: string,
-    targetLang: 'ru' | 'kz' = 'ru'
+    targetLang: string = 'ru'
 ): Promise<{ grammar: string }> {
     const cacheKey = `grammar_${sentence}_${targetLang}`;
     const cached = getFromCache<{ grammar: string }>(cacheKey);
     if (cached) return cached;
 
-    const langName = targetLang === 'ru' ? 'Russian' : 'Kazakh';
+    const langName = getLangName(targetLang);
     const prompt = `Explain the grammar of this sentence briefly in English AND ${langName} (max 3 sentences total): "${sentence}". 
   Provide the English explanation first, then the ${langName} translation of the explanation.
   Respond with ONLY the explanation text, no tags.`;

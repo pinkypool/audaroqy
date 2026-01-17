@@ -99,7 +99,7 @@ export default function WordMatchGame() {
                             <Home size={24} />
                         </Link>
                     </div>
-                    <h1 className="text-xl font-bold">Найди пару 🎯</h1>
+                    <h1 className="text-xl font-bold">Match Pairs 🎯</h1>
                     <div className="flex items-center gap-2 text-yellow-500 font-bold">
                         <Trophy size={20} />
                         <span>{score}</span>
@@ -113,14 +113,14 @@ export default function WordMatchGame() {
                         className="text-center py-12"
                     >
                         <div className="text-6xl mb-4">🎉</div>
-                        <h2 className="text-3xl font-bold mb-4">Отлично!</h2>
-                        <p className="text-neutral-400 mb-6">Ты набрал {score} очков и получил 50 XP!</p>
+                        <h2 className="text-3xl font-bold mb-4">Excellent!</h2>
+                        <p className="text-neutral-400 mb-6">You scored {score} points and earned 50 XP!</p>
                         <button
                             onClick={startNewGame}
                             className="bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-3 rounded-xl flex items-center gap-2 mx-auto"
                         >
                             <RotateCcw size={20} />
-                            Играть снова
+                            Play Again
                         </button>
                     </motion.div>
                 ) : (
@@ -149,7 +149,7 @@ export default function WordMatchGame() {
 
                         {/* Russian words */}
                         <div className="space-y-3">
-                            <h3 className="text-sm text-neutral-500 uppercase tracking-wider mb-4">Русский</h3>
+                            <h3 className="text-sm text-neutral-500 uppercase tracking-wider mb-4">Russian</h3>
                             {shuffledRu.map((pair) => (
                                 <motion.button
                                     key={pair.ru}
@@ -172,7 +172,7 @@ export default function WordMatchGame() {
                 )}
 
                 <p className="text-center text-neutral-500 text-sm mt-8">
-                    Выбери английское слово, затем найди его перевод на русский
+                    Select an English word, then find its Russian translation
                 </p>
             </div>
         </div>

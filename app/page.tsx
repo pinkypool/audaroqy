@@ -22,8 +22,8 @@ export default function Home() {
                     <span className="font-bold text-xl tracking-tight">NomadSmart</span>
                 </div>
                 <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-400">
-                    <Link href="/levels" className="hover:text-white transition-colors">Уровни</Link>
-                    <Link href="/about" className="hover:text-white transition-colors">О нас</Link>
+                    <Link href="/levels" className="hover:text-white transition-colors">Levels</Link>
+                    <Link href="/about" className="hover:text-white transition-colors">About</Link>
                 </nav>
             </header>
 
@@ -42,7 +42,7 @@ export default function Home() {
                         className="flex items-center gap-2 text-green-400 mb-8 bg-green-500/10 px-5 py-2 rounded-full border border-green-500/20 backdrop-blur-sm"
                     >
                         <Sparkles size={16} className="animate-pulse" />
-                        <span className="text-xs font-bold uppercase tracking-wider">Бесплатно для детей Казахстана</span>
+                        <span className="text-xs font-bold uppercase tracking-wider">Free for everyone</span>
                     </motion.div>
 
                     <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-[0.9] tracking-tighter">
@@ -50,27 +50,27 @@ export default function Home() {
                     </h1>
 
                     <p className="text-xl md:text-2xl text-neutral-400 max-w-2xl mb-12 leading-relaxed font-light">
-                        Изучай английский язык, читая любимые книги.
+                        Learn languages by reading your favorite books.
                         <br className="hidden md:block" />
-                        <span className="text-neutral-200 font-medium">Мгновенный перевод</span> и <span className="text-neutral-200 font-medium">умные тесты</span>.
+                        <span className="text-neutral-200 font-medium">Instant translation</span> and <span className="text-neutral-200 font-medium">smart tests</span>.
                     </p>
 
                     {/* Features Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-14 w-full max-w-3xl">
                         <FeatureCard
                             icon={<BookOpen className="text-blue-400" size={24} />}
-                            title="Читайте"
-                            desc="Адаптированные книги"
+                            title="Read"
+                            desc="Adapted books"
                         />
                         <FeatureCard
                             icon={<Globe className="text-green-400" size={24} />}
-                            title="Переводите"
-                            desc="На русский и казахский"
+                            title="Translate"
+                            desc="To any language"
                         />
                         <FeatureCard
                             icon={<Trophy className="text-yellow-400" size={24} />}
-                            title="Играйте"
-                            desc="Зарабатывайте XP"
+                            title="Play"
+                            desc="Earn XP"
                         />
                     </div>
 
@@ -80,7 +80,7 @@ export default function Home() {
                             whileTap={{ scale: 0.95 }}
                             className="group relative bg-green-600 hover:bg-green-500 text-white font-bold text-xl px-16 py-6 rounded-2xl flex items-center gap-4 shadow-2xl shadow-green-900/20 transition-all overflow-hidden"
                         >
-                            <span className="relative z-10">Начать обучение</span>
+                            <span className="relative z-10">Start Learning</span>
                             <ArrowRight size={24} className="relative z-10 group-hover:translate-x-1 transition-transform" />
 
                             {/* Button Shine Effect */}

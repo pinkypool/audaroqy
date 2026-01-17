@@ -44,10 +44,10 @@ export default function ReaderPage() {
     const [isLoadingWord, setIsLoadingWord] = useState(false);
     const [isLoadingSentence, setIsLoadingSentence] = useState(false);
     const [sidebarWidth, setSidebarWidth] = useState(320);
-    const [targetLang, setTargetLang] = useState<'ru' | 'kz'>('ru');
+    const [targetLang, setTargetLang] = useState<string>('ru');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
-    if (!book) return <div className="p-8 text-white">Книга не найдена</div>;
+    if (!book) return <div className="p-8 text-white">Book not found</div>;
 
     const currentChapter = book.chapters[currentChapterIndex];
 
@@ -92,6 +92,14 @@ export default function ReaderPage() {
         setSentenceTranslation('');
         setGrammar('');
         setIsLoadingWord(true);
+        
+        // Check for API key
+        const apiKey = localStorage.getItem('gemini_api_key');
+        if (!apiKey) {
+            setWordTranslation('MISSING_API_KEY');
+            setIsLoadingWord(false);
+            return;
+        }
 
         try {
             const { translation } = await translateWord(cleanWord, sentence, targetLang);
@@ -99,11 +107,10 @@ export default function ReaderPage() {
             addXP(XP_EVENTS.TRANSLATE_WORD);
             incrementStat('wordsTranslated');
 
-            // Save to cache
             translationCache[cacheKey] = { word: translation, sentence };
         } catch (err) {
             console.error('Translation error:', err);
-            setWordTranslation('Ошибка перевода');
+            setWordTranslation('Translation error');
         } finally {
             setIsLoadingWord(false);
         }
@@ -123,6 +130,14 @@ export default function ReaderPage() {
 
         setIsLoadingSentence(true);
 
+        // Check for API key
+        const apiKey = localStorage.getItem('gemini_api_key');
+        if (!apiKey) {
+            setSentenceTranslation('MISSING_API_KEY');
+            setIsLoadingSentence(false);
+            return;
+        }
+
         try {
             const [trResult, grResult] = await Promise.all([
                 translateSentence(selectedSentence, targetLang),
@@ -141,7 +156,7 @@ export default function ReaderPage() {
             }
         } catch (err) {
             console.error('Sentence translation error:', err);
-            setSentenceTranslation('Ошибка перевода');
+            setSentenceTranslation('Translation error');
         } finally {
             setIsLoadingSentence(false);
         }
@@ -206,7 +221,7 @@ export default function ReaderPage() {
                         />
                     </div>
                     <span className="text-sm font-bold text-neutral-400 font-sans">
-                        Глава {currentChapterIndex + 1} {totalParts > 1 ? `(ч. ${chapterPart + 1})` : ''}
+                        Chapter {currentChapterIndex + 1} {totalParts > 1 ? `(Part ${chapterPart + 1})` : ''}
                     </span>
                 </div>
 
@@ -220,7 +235,7 @@ export default function ReaderPage() {
                             className="bg-white rounded-3xl shadow-sm p-8 md:p-12 min-h-[60vh]"
                         >
                             <h2 className="text-3xl font-bold text-neutral-800 mb-8 font-serif">
-                                {currentChapter.title} {totalParts > 1 && <span className="text-lg text-neutral-400 font-sans ml-2">Часть {chapterPart + 1}</span>}
+                                {currentChapter.title} {totalParts > 1 && <span className="text-lg text-neutral-400 font-sans ml-2">Part {chapterPart + 1}</span>}
                             </h2>
 
                             <div className="prose prose-lg prose-neutral max-w-none font-serif leading-relaxed">
@@ -255,7 +270,7 @@ export default function ReaderPage() {
                                 className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-neutral-500 hover:bg-white hover:shadow-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:shadow-none transition-all"
                             >
                                 <ChevronLeft size={20} />
-                                Назад
+                                Back
                             </button>
 
                             <button
@@ -264,11 +279,11 @@ export default function ReaderPage() {
                             >
                                 {currentChapterIndex === book.chapters.length - 1 && chapterPart === totalParts - 1 ? (
                                     <>
-                                        Завершить <CheckCircle size={20} />
+                                        Finish <CheckCircle size={20} />
                                     </>
                                 ) : (
                                     <>
-                                        Далее <ChevronRight size={20} />
+                                        Next <ChevronRight size={20} />
                                     </>
                                 )}
                             </button>

@@ -86,13 +86,13 @@ export default function BookTestPage() {
                 <div className="absolute top-4 left-4">
                     <button onClick={() => router.back()} className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
                         <ChevronLeft size={24} />
-                        <span>Назад</span>
+                        <span>Back</span>
                     </button>
                 </div>
                 <div className="text-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-4 border-neutral-700 border-t-green-500 mx-auto mb-4"></div>
-                    <p>Генерация теста...</p>
-                    <p className="text-neutral-500 text-sm mt-2">Если долго, используются запасные вопросы</p>
+                    <p>Generating test...</p>
+                    <p className="text-neutral-500 text-sm mt-2">If it takes too long, fallback questions will be used</p>
                 </div>
             </div>
         );
@@ -112,8 +112,8 @@ export default function BookTestPage() {
         return (
             <div className="min-h-screen flex items-center justify-center p-8 text-center bg-[#131f24] text-white">
                 <div className="max-w-md w-full bg-neutral-900 border border-neutral-800 rounded-2xl p-8">
-                    <h1 className="text-4xl font-bold mb-4">{passed ? '🎉 Тест пройден!' : '😔 Попробуйте снова'}</h1>
-                    <p className="text-neutral-400 mb-4">Вы набрали {score} из {questions.length} правильных ответов.</p>
+                    <h1 className="text-4xl font-bold mb-4">{passed ? '🎉 Test Passed!' : '😔 Try Again'}</h1>
+                    <p className="text-neutral-400 mb-4">You got {score} out of {questions.length} correct answers.</p>
 
                     <div className="w-full bg-neutral-800 rounded-full h-4 mb-6">
                         <div
@@ -123,14 +123,14 @@ export default function BookTestPage() {
                     </div>
 
                     {passed && (
-                        <p className="text-green-400 mb-6 font-bold text-lg">🔓 Следующий уровень открыт!</p>
+                        <p className="text-green-400 mb-6 font-bold text-lg">🔓 Next Level Unlocked!</p>
                     )}
 
                     <button
                         onClick={() => router.push('/levels')}
                         className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-lg transition-colors shadow-[0_4px_0_rgb(21,128,61)] active:shadow-none active:translate-y-1 mb-3"
                     >
-                        Вернуться к уровням
+                        Back to Levels
                     </button>
 
                     {!passed && (
@@ -138,7 +138,7 @@ export default function BookTestPage() {
                             onClick={() => window.location.reload()}
                             className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg transition-colors"
                         >
-                            Попробовать снова
+                            Try Again
                         </button>
                     )}
                 </div>
