@@ -1,0 +1,129 @@
+{
+    "id": "book-a",
+    "title": "The Little Prince (Simplified)",
+    "level": "A",
+    "cover": "https://m.media-amazon.com/images/I/81YOuOGFCJL._AC_UF1000,1000_QL80_.jpg",
+    "description": "A simple version of the classic tale for beginners.",
+    "chapters": [
+        {
+            "id": "c1",
+            "title": "Chapter 1: The Drawing",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Once when I was six years old I saw a magnificent picture in a book. The book was called True Stories from Nature. It was about the primeval forest."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "It was a picture of a boa constrictor in the act of swallowing an animal. A boa constrictor is a big snake. It can swallow animals whole."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "In the book it said: Boa constrictors swallow their prey whole without chewing it. After that they are not able to move. They sleep during the six months that they need for digestion."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "I thought a lot about the adventures of the jungle. Then I made my first drawing. I showed my masterpiece to the grown-ups and asked them whether the drawing frightened them."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "But they answered: Why should anyone be frightened by a hat? My drawing was not a picture of a hat. It was a picture of a boa constrictor digesting an elephant."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The grown-ups did not understand. I had to explain everything to them. That is always the problem with grown-ups."
+                }
+            ]
+        },
+        {
+            "id": "c2",
+            "title": "Chapter 2: The Pilot",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "So I lived my life alone, without anyone that I could really talk to. I became a pilot. I flew airplanes all over the world."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Geography has been very useful to me. I could recognize China from Arizona at first glance. It is very useful if one gets lost in the night."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Six years ago I had an accident with my plane in the Desert of Sahara. Something was broken in my engine. I did not have a mechanic or any passengers with me."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "I was all alone. I had to do the repair work myself. It was a question of life or death for me. I had only enough drinking water for eight days."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The first night I went to sleep on the sand. I was a thousand miles from any human habitation. I was more isolated than a shipwrecked sailor on a raft in the middle of the ocean."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "You can imagine my surprise when I was awakened by a strange little voice. It said: Please draw me a sheep!"
+                }
+            ]
+        },
+        {
+            "id": "c3",
+            "title": "Chapter 3: The Little Prince",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "I jumped to my feet as if I had been struck by lightning. I looked around. And I saw a most extraordinary small person. He was standing there looking at me."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Here you can see the best portrait that I was able to make of him later. But my drawing is not as beautiful as the model. That is not my fault."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "The little fellow looked at me very seriously. He said again: Please draw me a sheep. I did not understand. I was too surprised."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "I told him that I do not know how to draw. He said: That does not matter. Draw me a sheep. So I drew."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "He looked at my drawing carefully. Then he said: No, this sheep is already very sick. Please make me another."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "I drew again. My friend smiled gently. He said: You can see for yourself. This is not a sheep. It is a ram. It has horns."
+                }
+            ]
+        },
+        {
+            "id": "c4",
+            "title": "Chapter 4: The Box",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "I made another drawing. But it was rejected too. He said: This one is too old. I want a sheep that will live a long time."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "I was losing my patience. I needed to start work on my engine. So I made this drawing. I said: This is only his box. The sheep you asked for is inside."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "To my surprise, the little prince was delighted. He said: That is exactly the way I wanted it! Do you think that this sheep will need a lot of grass?"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "I said: Why? He replied: Because where I live everything is very small. He bent his head over the drawing. He said: Not so small that... Look! He has gone to sleep."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "That is how I made the acquaintance of the little prince. He came from a very small planet. It was only a little bigger than he was."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "I learned where he came from. His planet was called Asteroid B-612. I learned this important information only because of a Turkish astronomer."
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "id": "book-f",
+    "title": "Great Gatsby (C1)",
+    "level": "C",
+    "cover": "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg",
+    "description": "In my younger and more vulnerable years...",
+    "chapters": [
+        {
+            "id": "c1",
+            "title": "Chapter 1",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since."
+                }
+            ]
+        }
+    ]
+}

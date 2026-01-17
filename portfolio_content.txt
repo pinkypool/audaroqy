@@ -1,0 +1,55 @@
+# 🚀 NomadSmart (AudarOqu) - AI-Powered Language Learning
+
+**Project Title:**
+`NomadSmart - AI-Powered Language Learning Platform`
+
+**Role:**
+`Full-Stack Developer`
+
+**Skills:**
+`Next.js` `React` `Tailwind CSS` `AI Integration` `TypeScript` `Framer Motion`
+
+---
+
+## 💡 Project Overview
+
+**NomadSmart (AudarOqu)** is an innovative educational platform designed to democratize language learning. It combines the immersion of reading adapted literature with the power of **Google Gemini AI** to create a seamless learning experience.
+
+Users can read books in English and instantly get context-aware translations in **Russian** or **Kazakh**, making foreign literature accessible and engaging for everyone.
+
+## ✨ Key Features
+
+- **📚 Smart Reading Interface**
+  - Distraction-free book reader with multiple difficulty levels (A, B, C).
+  - Progress tracking and chapter management.
+- **🤖 AI-Powered Translation**
+  - Instant, context-aware translations using **Gemini 1.5 Flash**.
+  - **User-Configurable API Key**: Users can input their own Gemini API key for privacy and control.
+  - Supports translation of individual words and full sentences.
+- **🎮 Gamification System**
+  - **XP & Leveling**: Earn experience points for reading and translating.
+  - **Achievements**: Unlock badges for milestones.
+- **🧠 Interactive Learning**
+  - **Smart Tests**: AI-generated quizzes to verify comprehension.
+  - **Grammar Explanations**: Instant grammar breakdowns for complex sentences.
+- **🎨 Premium Design**
+  - **Dark/Light Mode**: Fully responsive theme.
+  - **Smooth Animations**: Powered by Framer Motion for a polished feel.
+
+## 🛠️ Tech Stack
+
+| Category     | Technologies                                          |
+| ------------ | ----------------------------------------------------- |
+| **Frontend** | ⚛️ Next.js 15 (App Router), React 19, Tailwind CSS v4 |
+| **UI/UX**    | 🎭 Framer Motion, Lucide React, Glassmorphism         |
+| **AI**       | 🧠 Google Generative AI SDK (Gemini 1.5 Flash)        |
+| **Backend**  | ⚡ Server Actions, API Routes                         |
+| **Language** | 📘 TypeScript                                         |
+
+## 📸 Project Gallery
+
+_(Add your screenshots here)_
+
+---
+
+_Built with ❤️ using Next.js and Gemini AI._

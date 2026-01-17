@@ -1,0 +1,19 @@
+{
+    "id": "book-d",
+    "title": "Harry Potter (A2)",
+    "level": "A",
+    "cover": "https://www.booksfortopics.com/wp-content/uploads/harry-potter-and-the-chamber-of-secrets.jpeg",
+    "description": "The boy who lived.",
+    "chapters": [
+        {
+            "id": "c1",
+            "title": "Chapter 1",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much."
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "id": "book-e",
+    "title": "The Hobbit (B1)",
+    "level": "B",
+    "cover": "https://m.media-amazon.com/images/I/71jD4jMityL._AC_UF1000,1000_QL80_.jpg",
+    "description": "In a hole in the ground there lived a hobbit.",
+    "chapters": [
+        {
+            "id": "c1",
+            "title": "Chapter 1",
+            "content": [
+                {
+                    "type": "paragraph",
+                    "text": "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort."
+                }
+            ]
+        }
+    ]
+}

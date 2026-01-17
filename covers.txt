@@ -1,0 +1,8 @@
+{
+  "Prince": "https://m.media-amazon.com/images/I/71NsO7LVa3L._AC_UF1000,1000_QL80_.jpg",
+  "Sherlock": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781607102113/the-adventures-of-sherlock-holmes-and-other-stories-9781607102113_hr.jpg",
+  "1984": "https://simg.marwin.kz/media/catalog/product/f/u/fullimage_18_123.jpg",
+  "HarryPotter": "https://res.cloudinary.com/bloomsbury-atlas/image/upload/w_360,c_scale,dpr_1.5/jackets/9781408855652.jpg",
+  "BookE": "https://m.media-amazon.com/images/I/71jD4jMityL._AC_UF1000,1000_QL80_.jpg",
+  "BookF": "https://m.media-amazon.com/images/I/81T4dS6IkaL._AC_UF1000,1000_QL80_.jpg"
+}
