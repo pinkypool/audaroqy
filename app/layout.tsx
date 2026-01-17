@@ -6,6 +6,8 @@ export const metadata: Metadata = {
     description: "Learn English by reading books",
 };
 
+import { LanguageProvider } from "@/contexts/LanguageContext";
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -14,7 +16,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className="antialiased" suppressHydrationWarning>
-                {children}
+                <LanguageProvider>
+                    {children}
+                </LanguageProvider>
             </body>
         </html>
     );

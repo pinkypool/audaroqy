@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Volume2, ChevronDown, ChevronUp, BookOpen, MessageSquare, Loader2, GripVertical, Globe, Settings } from 'lucide-react';
+import { Volume2, ChevronDown, ChevronUp, BookOpen, MessageSquare, Loader2, GripVertical, Globe, Settings, Sparkles, Key } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import Link from 'next/link';
 
 interface TranslationPanelProps {
     word: string;
@@ -14,8 +16,6 @@ interface TranslationPanelProps {
     isLoadingWord: boolean;
     width: number;
     onWidthChange: (width: number) => void;
-    // New optional language prop (default 'ru')
-    // New optional language prop (default 'ru')
     language?: string;
     onLanguageChange?: (lang: string) => void;
     onOpenSettings?: () => void;
@@ -36,6 +36,7 @@ export default function TranslationPanel({
     onLanguageChange,
     onOpenSettings,
 }: TranslationPanelProps) {
+    const { t } = useLanguage();
     const [showSentence, setShowSentence] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const panelRef = useRef<HTMLDivElement>(null);
@@ -101,7 +102,7 @@ export default function TranslationPanel({
             {/* Content */}
             <div className="flex-1 flex flex-col overflow-hidden">
                 <div className="p-3 border-b border-neutral-700 bg-[#1a2a32] flex items-center justify-between">
-                    <h2 className="text-sm font-bold text-white uppercase tracking-wider">Translation</h2>
+                    <h2 className="text-sm font-bold text-white uppercase tracking-wider">{t('translation_panel_title')}</h2>
                     <div className="flex items-center gap-2">
                         <button
                             onClick={onOpenSettings}
@@ -116,13 +117,13 @@ export default function TranslationPanel({
                             onChange={e => onLanguageChange && onLanguageChange(e.target.value)}
                             className="bg-neutral-800 text-white text-xs font-medium rounded-lg px-2 py-1.5 border border-neutral-700 focus:outline-none focus:border-green-500 transition-colors cursor-pointer"
                         >
-                            <option value="ru">Russian</option>
-                            <option value="kz">Kazakh</option>
-                            <option value="es">Spanish</option>
-                            <option value="fr">French</option>
-                            <option value="de">German</option>
-                            <option value="it">Italian</option>
-                            <option value="tr">Turkish</option>
+                            <option value="ru">Русский</option>
+                            <option value="kz">Қазақша</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="de">Deutsch</option>
+                            <option value="it">Italiano</option>
+                            <option value="tr">Türkçe</option>
                         </select>
                     </div>
                 </div>
@@ -131,7 +132,7 @@ export default function TranslationPanel({
                     {!word ? (
                         <div className="h-full flex flex-col items-center justify-center text-neutral-500 p-6">
                             <BookOpen size={48} className="mb-4 opacity-30" />
-                            <p className="text-center text-sm">Click on any word to translate</p>
+                            <p className="text-center text-sm">{t('click_to_translate')}</p>
                         </div>
                     ) : (
                         <>
@@ -139,7 +140,7 @@ export default function TranslationPanel({
                             <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700">
                                 <div className="flex items-start justify-between mb-2">
                                     <div>
-                                        <span className="text-xs text-neutral-500 uppercase tracking-wider">Word</span>
+                                        <span className="text-xs text-neutral-500 uppercase tracking-wider">{t('word_label')}</span>
                                         <h3 className="text-xl font-bold text-white">{word}</h3>
                                     </div>
                                     <button
@@ -152,20 +153,24 @@ export default function TranslationPanel({
                                 </div>
 
                                 <div className="border-t border-neutral-700 pt-2">
-                                    <span className="text-xs text-neutral-500 uppercase tracking-wider">Translation</span>
+                                    <span className="text-xs text-neutral-500 uppercase tracking-wider">{t('translation_label')}</span>
                                     {isLoadingWord ? (
                                         <div className="flex items-center gap-2 text-neutral-400 mt-1">
                                             <Loader2 size={16} className="animate-spin" />
-                                            <span>Translating...</span>
+                                            <span>{t('translating')}</span>
                                         </div>
                                     ) : translation === 'MISSING_API_KEY' ? (
                                         <div className="mt-2 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                                            <p className="text-xs text-yellow-200 mb-2">API Key Required</p>
+                                            <div className="flex items-center gap-2 font-bold text-yellow-200 mb-1">
+                                                <Key size={14} />
+                                                <span>{t('api_key_required')}</span>
+                                            </div>
+                                            <p className="text-xs text-yellow-200/80 mb-2">{t('api_key_desc')}</p>
                                             <button
                                                 onClick={onOpenSettings}
                                                 className="text-xs bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-200 px-3 py-1.5 rounded-lg transition-colors font-medium w-full"
                                             >
-                                                Add Key
+                                                {t('add_key')}
                                             </button>
                                         </div>
                                     ) : (
@@ -182,7 +187,7 @@ export default function TranslationPanel({
                                 >
                                     <div className="flex items-center gap-2">
                                         <MessageSquare size={16} className="text-blue-400" />
-                                        <span className="font-bold text-sm text-white">Sentence Context</span>
+                                        <span className="font-bold text-sm text-white">{t('context_label')}</span>
                                     </div>
                                     {showSentence ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                                 </button>
@@ -197,22 +202,32 @@ export default function TranslationPanel({
                                             <button
                                                 onClick={handleShowSentence}
                                                 disabled={isLoadingSentence}
-                                                className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
+                                                className="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
                                             >
-                                                {isLoadingSentence ? 'Translating...' : 'Translate Sentence'}
+                                                {isLoadingSentence ? (
+                                                    <>
+                                                        <Loader2 size={14} className="animate-spin" />
+                                                        {t('translating')}
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Sparkles size={14} />
+                                                        {t('translate_sentence')}
+                                                    </>
+                                                )}
                                             </button>
                                         ) : (
                                             <div className="space-y-3">
                                                 <div>
-                                                    <span className="text-xs text-neutral-500 uppercase tracking-wider">Translation</span>
+                                                    <span className="text-xs text-neutral-500 uppercase tracking-wider">{t('translation_label')}</span>
                                                     {sentenceTranslation === 'MISSING_API_KEY' ? (
                                                         <div className="mt-2 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                                                            <p className="text-xs text-yellow-200 mb-2">API Key Required</p>
+                                                            <p className="text-xs text-yellow-200 mb-2">{t('api_key_required')}</p>
                                                             <button
                                                                 onClick={onOpenSettings}
                                                                 className="text-xs bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-200 px-3 py-1.5 rounded-lg transition-colors font-medium w-full"
                                                             >
-                                                                Add Key
+                                                                {t('add_key')}
                                                             </button>
                                                         </div>
                                                     ) : (
@@ -221,7 +236,10 @@ export default function TranslationPanel({
                                                 </div>
                                                 {grammar && (
                                                     <div className="bg-blue-500/10 rounded-lg p-3 border border-blue-500/20">
-                                                        <span className="text-xs text-blue-400 uppercase tracking-wider font-bold">Grammar</span>
+                                                        <span className="text-xs text-blue-400 uppercase tracking-wider font-bold flex items-center gap-1">
+                                                            <BookOpen size={12} />
+                                                            {t('grammar_label')}
+                                                        </span>
                                                         <p className="text-blue-100 text-xs mt-1 leading-relaxed">{grammar}</p>
                                                     </div>
                                                 )}

@@ -6,6 +6,7 @@ import TestCard from '@/components/TestCard';
 import { addXP, XP_EVENTS } from '@/lib/xp';
 import { unlockLevel } from '@/lib/progress';
 import { generateTestQuestions } from '@/lib/gemini';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const MOCK_QUESTIONS = [
     {
@@ -26,6 +27,7 @@ const MOCK_QUESTIONS = [
 ];
 
 export default function TestPage() {
+    const { t } = useLanguage();
     const params = useParams();
     const router = useRouter();
     const levelId = params.levelId as string;
@@ -63,18 +65,18 @@ export default function TestPage() {
     if (isFinished) {
         const passed = score >= 2;
         return (
-            <div className="min-h-screen flex items-center justify-center p-8 text-center">
+            <div className="min-h-screen flex items-center justify-center p-8 text-center bg-[#131f24] text-white">
                 <div className="max-w-md w-full bg-neutral-900 border border-neutral-800 rounded-2xl p-8">
-                    <h1 className="text-4xl font-bold mb-4">{passed ? '🎉 Passed!' : '😔 Try Again'}</h1>
-                    <p className="text-neutral-400 mb-8">You got {score} out of {questions.length} correct.</p>
+                    <h1 className="text-4xl font-bold mb-4">{passed ? `🎉 ${t('passed')}` : `😔 ${t('try_again')}`}</h1>
+                    <p className="text-neutral-400 mb-8">{t('score_result', { score: score, total: questions.length })}</p>
                     {passed && (
-                        <p className="text-green-400 mb-8 font-bold">Level {levelId === 'A' ? 'B' : 'C'} Unlocked!</p>
+                        <p className="text-green-400 mb-8 font-bold">{t('level_unlocked', { level: levelId === 'A' ? 'B' : 'C' })}</p>
                     )}
                     <button
                         onClick={() => router.push('/levels')}
                         className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg transition-colors"
                     >
-                        Back to Levels
+                        {t('back_to_levels')}
                     </button>
                 </div>
             </div>
@@ -82,7 +84,7 @@ export default function TestPage() {
     }
 
     return (
-        <div className="min-h-screen p-8 flex flex-col items-center justify-center">
+        <div className="min-h-screen p-8 flex flex-col items-center justify-center bg-[#131f24]">
             <TestCard
                 question={questions[currentQuestionIndex]}
                 onAnswer={handleAnswer}

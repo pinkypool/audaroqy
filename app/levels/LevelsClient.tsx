@@ -17,11 +17,14 @@ import { Trophy, Star, User, Flame, Gamepad2, Lock, Plus } from 'lucide-react';
 import { getXP } from '@/lib/xp';
 import { getStreak, updateStreak } from '@/lib/achievements';
 
+import { useLanguage } from '@/contexts/LanguageContext';
+
 interface LevelsClientProps {
     covers: Record<string, string>;
 }
 
 export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
+    const { t } = useLanguage();
     const [unlockedLevels, setUnlockedLevels] = useState<string[]>([]);
     const [xp, setXp] = useState(0);
     const [streak, setStreak] = useState(0);
@@ -79,8 +82,8 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
 
             <main className="p-6 max-w-5xl mx-auto">
                 <div className="mb-8 text-center">
-                    <h2 className="text-2xl font-bold mb-2">Your Learning Path</h2>
-                    <p className="text-neutral-400 text-sm">Read books and unlock new levels</p>
+                    <h2 className="text-2xl font-bold mb-2">{t('your_path')}</h2>
+                    <p className="text-neutral-400 text-sm">{t('read_and_unlock')}</p>
                 </div>
 
                 {/* Level A - Beginner */}
@@ -88,8 +91,8 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 rounded-xl bg-green-500 flex items-center justify-center font-bold text-lg">A</div>
                         <div>
-                            <h3 className="font-bold">Beginner</h3>
-                            <p className="text-neutral-500 text-sm">Level A1</p>
+                            <h3 className="font-bold">{t('level_beginner')}</h3>
+                            <p className="text-neutral-500 text-sm">{t('level_a1')}</p>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -101,7 +104,7 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                                 </div>
                                 <div className="p-3">
                                     <p className="font-medium text-sm truncate">{bookA.title}</p>
-                                    <p className="text-green-400 text-xs">Available</p>
+                                    <p className="text-green-400 text-xs">{t('available')}</p>
                                 </div>
                             </div>
                         </Link>
@@ -116,14 +119,14 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                             </div>
                             <div className="p-3">
                                 <p className="font-medium text-sm truncate">{bookD.title}</p>
-                                <p className="text-yellow-500 text-xs">Locked</p>
+                                <p className="text-yellow-500 text-xs">{t('locked')}</p>
                             </div>
                         </div>
 
                         {/* Add your book */}
                         <div onClick={() => setPricingOpen(true)} className="bg-neutral-900/50 rounded-2xl border-2 border-dashed border-neutral-700 hover:border-green-500 transition-all cursor-pointer flex flex-col items-center justify-center aspect-[3/4] p-4">
                             <Plus size={40} className="text-neutral-600 mb-2" />
-                            <p className="text-neutral-500 text-sm text-center">Add your own book</p>
+                            <p className="text-neutral-500 text-sm text-center">{t('add_own_book')}</p>
                         </div>
                     </div>
                 </div>
@@ -133,8 +136,8 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                     <div className="flex items-center gap-3 mb-4">
                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg ${unlockedLevels.includes('B') ? 'bg-blue-500' : 'bg-neutral-700'}`}>B</div>
                         <div>
-                            <h3 className="font-bold">Intermediate</h3>
-                            <p className="text-neutral-500 text-sm">Level A2-B1</p>
+                            <h3 className="font-bold">{t('level_intermediate')}</h3>
+                            <p className="text-neutral-500 text-sm">{t('level_a2_b1')}</p>
                         </div>
                         {!unlockedLevels.includes('B') && <Lock size={16} className="text-neutral-500" />}
                     </div>
@@ -147,7 +150,7 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                                     </div>
                                     <div className="p-3">
                                         <p className="font-medium text-sm truncate">{bookB.title}</p>
-                                        <p className="text-blue-400 text-xs">Available</p>
+                                        <p className="text-blue-400 text-xs">{t('available')}</p>
                                     </div>
                                 </div>
                             </Link>
@@ -161,7 +164,7 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                                 </div>
                                 <div className="p-3">
                                     <p className="font-medium text-sm truncate">{bookB.title}</p>
-                                    <p className="text-neutral-500 text-xs">Complete Level A</p>
+                                    <p className="text-neutral-500 text-xs">{t('complete_level_a')}</p>
                                 </div>
                             </div>
                         )}
@@ -175,7 +178,7 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                             </div>
                             <div className="p-3">
                                 <p className="font-medium text-sm truncate">{bookE.title}</p>
-                                <p className="text-yellow-500 text-xs">Locked</p>
+                                <p className="text-yellow-500 text-xs">{t('locked')}</p>
                             </div>
                         </div>
                     </div>
@@ -186,8 +189,8 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                     <div className="flex items-center gap-3 mb-4">
                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg ${unlockedLevels.includes('C') ? 'bg-purple-500' : 'bg-neutral-700'}`}>C</div>
                         <div>
-                            <h3 className="font-bold">Advanced</h3>
-                            <p className="text-neutral-500 text-sm">Level B2+</p>
+                            <h3 className="font-bold">{t('level_advanced')}</h3>
+                            <p className="text-neutral-500 text-sm">{t('level_b2_plus')}</p>
                         </div>
                         {!unlockedLevels.includes('C') && <Lock size={16} className="text-neutral-500" />}
                     </div>
@@ -200,7 +203,7 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                                     </div>
                                     <div className="p-3">
                                         <p className="font-medium text-sm truncate">{bookC.title}</p>
-                                        <p className="text-purple-400 text-xs">Available</p>
+                                        <p className="text-purple-400 text-xs">{t('available')}</p>
                                     </div>
                                 </div>
                             </Link>
@@ -214,7 +217,7 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                                 </div>
                                 <div className="p-3">
                                     <p className="font-medium text-sm truncate">{bookC.title}</p>
-                                    <p className="text-neutral-500 text-xs">Complete Level B</p>
+                                    <p className="text-neutral-500 text-xs">{t('complete_level_b')}</p>
                                 </div>
                             </div>
                         )}
@@ -228,7 +231,7 @@ export default function LevelsClient({ covers: COVERS }: LevelsClientProps) {
                             </div>
                             <div className="p-3">
                                 <p className="font-medium text-sm truncate">{bookF.title}</p>
-                                <p className="text-yellow-500 text-xs">Locked</p>
+                                <p className="text-yellow-500 text-xs">{t('locked')}</p>
                             </div>
                         </div>
                     </div>

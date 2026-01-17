@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, Key, Save, Check } from 'lucide-react';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function SettingsPage() {
+    const { t } = useLanguage();
     const router = useRouter();
     const [apiKey, setApiKeyState] = useState('');
     const [saved, setSaved] = useState(false);
@@ -28,18 +30,17 @@ export default function SettingsPage() {
                     <Link href="/levels" className="text-neutral-400 hover:text-white transition-colors">
                         <ChevronLeft size={24} />
                     </Link>
-                    <h1 className="text-2xl font-bold">Settings</h1>
+                    <h1 className="text-2xl font-bold">{t('settings_title')}</h1>
                 </div>
 
                 <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6">
                     <div className="flex items-center gap-3 mb-4">
                         <Key className="text-green-500" size={24} />
-                        <h2 className="text-lg font-bold">Google Gemini API Key</h2>
+                        <h2 className="text-lg font-bold">{t('api_key_label')}</h2>
                     </div>
 
                     <p className="text-neutral-400 text-sm mb-4">
-                        To use translations, you need a Google Gemini API key.
-                        Get it for free at <a href="https://aistudio.google.com/app/apikey" target="_blank" className="text-green-400 underline">Google AI Studio</a>
+                        {t('api_key_desc_long')} <a href="https://aistudio.google.com/app/apikey" target="_blank" className="text-green-400 underline">{t('get_key_link')}</a>
                     </p>
 
                     <input
@@ -60,19 +61,19 @@ export default function SettingsPage() {
                         {saved ? (
                             <>
                                 <Check size={20} />
-                                Saved!
+                                {t('saved')}
                             </>
                         ) : (
                             <>
                                 <Save size={20} />
-                                Save
+                                {t('save')}
                             </>
                         )}
                     </button>
                 </div>
 
                 <p className="text-neutral-600 text-xs text-center mt-6">
-                    Your key is stored locally in your browser.
+                    {t('key_stored_locally')}
                 </p>
             </div>
         </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { X, Key, Save, AlertCircle, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ApiKeyModalProps {
     isOpen: boolean;
@@ -10,6 +11,7 @@ interface ApiKeyModalProps {
 }
 
 export default function ApiKeyModal({ isOpen, onClose }: ApiKeyModalProps) {
+    const { t } = useLanguage();
     const [apiKey, setApiKey] = useState('');
     const [isVisible, setIsVisible] = useState(false);
 
@@ -20,7 +22,7 @@ export default function ApiKeyModal({ isOpen, onClose }: ApiKeyModalProps) {
 
     const handleSave = () => {
         if (apiKey.trim().length < 10) {
-            alert('Please enter a valid API key');
+            alert(t('enter_valid_key'));
             return;
         }
         localStorage.setItem('gemini_api_key', apiKey.trim());
@@ -48,7 +50,7 @@ export default function ApiKeyModal({ isOpen, onClose }: ApiKeyModalProps) {
                                 <div className="p-2 bg-green-500/10 rounded-lg">
                                     <Key className="text-green-400" size={20} />
                                 </div>
-                                <h2 className="text-xl font-bold text-white">API Configuration</h2>
+                                <h2 className="text-xl font-bold text-white">{t('api_config_title')}</h2>
                             </div>
                             <button
                                 onClick={onClose}
@@ -63,16 +65,16 @@ export default function ApiKeyModal({ isOpen, onClose }: ApiKeyModalProps) {
                             <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 flex gap-3">
                                 <AlertCircle className="text-blue-400 shrink-0" size={20} />
                                 <div className="text-sm text-blue-200">
-                                    <p className="mb-2 font-medium">Why do I need this?</p>
+                                    <p className="mb-2 font-medium">{t('why_need_key')}</p>
                                     <p className="opacity-80">
-                                        This app runs locally in your browser. To use the AI translation features, you need to provide your own Google Gemini API key.
+                                        {t('key_explanation')}
                                     </p>
                                 </div>
                             </div>
 
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-neutral-300">
-                                    Google Gemini API Key
+                                    {t('google_api_key_label')}
                                 </label>
                                 <div className="relative">
                                     <input
@@ -86,7 +88,7 @@ export default function ApiKeyModal({ isOpen, onClose }: ApiKeyModalProps) {
                                         onClick={() => setIsVisible(!isVisible)}
                                         className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-neutral-500 hover:text-neutral-300"
                                     >
-                                        {isVisible ? 'HIDE' : 'SHOW'}
+                                        {isVisible ? t('hide') : t('show')}
                                     </button>
                                 </div>
                                 <div className="flex justify-between items-center pt-1">
@@ -96,14 +98,14 @@ export default function ApiKeyModal({ isOpen, onClose }: ApiKeyModalProps) {
                                         rel="noopener noreferrer"
                                         className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1"
                                     >
-                                        Get a free API key <ExternalLink size={10} />
+                                        {t('get_free_key')} <ExternalLink size={10} />
                                     </a>
                                     {apiKey && (
                                         <button
                                             onClick={handleClear}
                                             className="text-xs text-red-400 hover:text-red-300"
                                         >
-                                            Clear Key
+                                            {t('clear_key')}
                                         </button>
                                     )}
                                 </div>
@@ -116,14 +118,14 @@ export default function ApiKeyModal({ isOpen, onClose }: ApiKeyModalProps) {
                                 onClick={onClose}
                                 className="px-4 py-2 text-neutral-400 hover:text-white font-medium transition-colors"
                             >
-                                Cancel
+                                {t('cancel')}
                             </button>
                             <button
                                 onClick={handleSave}
                                 className="px-6 py-2 bg-green-600 hover:bg-green-500 text-white rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-green-900/20"
                             >
                                 <Save size={18} />
-                                Save Key
+                                {t('save_key')}
                             </button>
                         </div>
                     </motion.div>

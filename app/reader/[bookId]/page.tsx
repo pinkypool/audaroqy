@@ -17,6 +17,7 @@ import bookF from '@/data/bookF.json';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle, Home } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const getBook = (id: string) => {
     const allBooks = [bookA, bookB, bookC, bookD, bookE, bookF];
@@ -27,6 +28,7 @@ const getBook = (id: string) => {
 const translationCache: Record<string, { word: string; sentence: string; sentenceTr?: string; grammar?: string }> = {};
 
 export default function ReaderPage() {
+    const { t } = useLanguage();
     const params = useParams();
     const router = useRouter();
     const book = getBook(params.bookId as string);
@@ -47,7 +49,16 @@ export default function ReaderPage() {
     const [targetLang, setTargetLang] = useState<string>('ru');
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
-    if (!book) return <div className="p-8 text-white">Book not found</div>;
+    if (!book) return (
+        <div className="min-h-screen bg-[#131f24] flex items-center justify-center text-white">
+            <div className="text-center">
+                <h2 className="text-xl font-bold mb-2">{t('book_not_found')}</h2>
+                <Link href="/levels" className="text-green-400 hover:underline">
+                    {t('back_to_levels')}
+                </Link>
+            </div>
+        </div>
+    );
 
     const currentChapter = book.chapters[currentChapterIndex];
 
@@ -204,9 +215,9 @@ export default function ReaderPage() {
     return (
         <div className="min-h-screen bg-[#f7f7f7] flex">
             {/* Main Content */}
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col h-screen overflow-hidden">
                 {/* Header */}
-                <div className="bg-white border-b border-neutral-200 px-4 py-3 flex items-center gap-4">
+                <div className="bg-white border-b border-neutral-200 px-4 py-3 flex items-center gap-4 shrink-0 z-10">
                     <Link href="/levels" className="text-neutral-400 hover:text-neutral-600 transition-colors">
                         <ChevronLeft size={24} />
                     </Link>
@@ -220,14 +231,14 @@ export default function ReaderPage() {
                             className="h-full bg-green-500 rounded-full"
                         />
                     </div>
-                    <span className="text-sm font-bold text-neutral-400 font-sans">
-                        Chapter {currentChapterIndex + 1} {totalParts > 1 ? `(Part ${chapterPart + 1})` : ''}
+                    <span className="text-sm font-bold text-neutral-400 font-sans whitespace-nowrap">
+                        {t('chapter')} {currentChapterIndex + 1} {totalParts > 1 ? `(${t('part')} ${chapterPart + 1})` : ''}
                     </span>
                 </div>
 
                 {/* Content */}
                 <main className="flex-1 overflow-y-auto p-6 md:p-12">
-                    <div className="max-w-2xl mx-auto">
+                    <div className="max-w-2xl mx-auto pb-20">
                         <motion.div
                             key={`${currentChapter.id}-${chapterPart}`}
                             initial={{ opacity: 0, x: 20 }}
@@ -235,7 +246,7 @@ export default function ReaderPage() {
                             className="bg-white rounded-3xl shadow-sm p-8 md:p-12 min-h-[60vh]"
                         >
                             <h2 className="text-3xl font-bold text-neutral-800 mb-8 font-serif">
-                                {currentChapter.title} {totalParts > 1 && <span className="text-lg text-neutral-400 font-sans ml-2">Part {chapterPart + 1}</span>}
+                                {currentChapter.title} {totalParts > 1 && <span className="text-lg text-neutral-400 font-sans ml-2">{t('part')} {chapterPart + 1}</span>}
                             </h2>
 
                             <div className="prose prose-lg prose-neutral max-w-none font-serif leading-relaxed">
@@ -263,14 +274,14 @@ export default function ReaderPage() {
                         </motion.div>
 
                         {/* Navigation */}
-                        <div className="flex items-center justify-between mt-8 pb-12">
+                        <div className="flex items-center justify-between mt-8">
                             <button
                                 onClick={handlePrev}
                                 disabled={currentChapterIndex === 0 && chapterPart === 0}
                                 className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-neutral-500 hover:bg-white hover:shadow-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:shadow-none transition-all"
                             >
                                 <ChevronLeft size={20} />
-                                Back
+                                {t('back')}
                             </button>
 
                             <button
@@ -279,11 +290,11 @@ export default function ReaderPage() {
                             >
                                 {currentChapterIndex === book.chapters.length - 1 && chapterPart === totalParts - 1 ? (
                                     <>
-                                        Finish <CheckCircle size={20} />
+                                        {t('finish')} <CheckCircle size={20} />
                                     </>
                                 ) : (
                                     <>
-                                        Next <ChevronRight size={20} />
+                                        {t('next')} <ChevronRight size={20} />
                                     </>
                                 )}
                             </button>

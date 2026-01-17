@@ -1,3 +1,5 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+
 interface Question {
     question: string;
     options: string[];
@@ -12,10 +14,12 @@ interface TestCardProps {
 }
 
 export default function TestCard({ question, onAnswer, currentIndex, totalQuestions }: TestCardProps) {
+    const { t } = useLanguage();
+
     return (
         <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 max-w-2xl w-full mx-auto shadow-2xl">
             <div className="flex justify-between items-center mb-8">
-                <span className="text-neutral-500 font-mono text-sm">Question {currentIndex + 1} / {totalQuestions}</span>
+                <span className="text-neutral-500 font-mono text-sm">{t('question')} {currentIndex + 1} / {totalQuestions}</span>
                 <div className="h-2 w-32 bg-neutral-800 rounded-full overflow-hidden">
                     <div
                         className="h-full bg-blue-600 transition-all duration-500"

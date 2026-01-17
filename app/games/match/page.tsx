@@ -35,7 +35,10 @@ function shuffleArray<T>(array: T[]): T[] {
     return newArray;
 }
 
+import { useLanguage } from '@/contexts/LanguageContext';
+
 export default function WordMatchGame() {
+    const { t } = useLanguage();
     const [gamePairs, setGamePairs] = useState<typeof WORD_PAIRS>([]);
     const [selectedEn, setSelectedEn] = useState<string | null>(null);
     const [matched, setMatched] = useState<string[]>([]);
@@ -99,7 +102,7 @@ export default function WordMatchGame() {
                             <Home size={24} />
                         </Link>
                     </div>
-                    <h1 className="text-xl font-bold">Match Pairs 🎯</h1>
+                    <h1 className="text-xl font-bold">{t('match_game_title')}</h1>
                     <div className="flex items-center gap-2 text-yellow-500 font-bold">
                         <Trophy size={20} />
                         <span>{score}</span>
@@ -113,14 +116,14 @@ export default function WordMatchGame() {
                         className="text-center py-12"
                     >
                         <div className="text-6xl mb-4">🎉</div>
-                        <h2 className="text-3xl font-bold mb-4">Excellent!</h2>
-                        <p className="text-neutral-400 mb-6">You scored {score} points and earned 50 XP!</p>
+                        <h2 className="text-3xl font-bold mb-4">{t('excellent')}</h2>
+                        <p className="text-neutral-400 mb-6">{t('score_msg', { score })}</p>
                         <button
                             onClick={startNewGame}
                             className="bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-3 rounded-xl flex items-center gap-2 mx-auto"
                         >
                             <RotateCcw size={20} />
-                            Play Again
+                            {t('play_again')}
                         </button>
                     </motion.div>
                 ) : (
@@ -172,7 +175,7 @@ export default function WordMatchGame() {
                 )}
 
                 <p className="text-center text-neutral-500 text-sm mt-8">
-                    Select an English word, then find its Russian translation
+                    {t('select_word_instruction')}
                 </p>
             </div>
         </div>
