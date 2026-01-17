@@ -50,6 +50,11 @@ Users can read books in English and instantly get context-aware translations in 
 
 _(Add your screenshots here)_
 
+## 🔗 Links
+
+- **GitHub Repository:** [https://github.com/pinkypool/audaroqy](https://github.com/pinkypool/audaroqy)
+- **Live Demo:** [https://audaroqy.vercel.app](https://audaroqy.vercel.app) (Verify this link after deployment)
+
 ---
 
 _Built with ❤️ using Next.js and Gemini AI._

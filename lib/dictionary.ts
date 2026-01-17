@@ -190,7 +190,6 @@ export const DICTIONARY: Record<string, string> = {
     'study': 'изучение',
     'book': 'книга',
     'eye': 'глаз',
-    'job': 'работа',
     'word': 'слово',
     'business': 'бизнес',
     'issue': 'вопрос',

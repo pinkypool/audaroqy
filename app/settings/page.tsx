@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { getApiKey, setApiKey } from '@/lib/openrouter';
 import { ChevronLeft, Key, Save, Check } from 'lucide-react';
 import Link from 'next/link';
 
@@ -12,11 +11,12 @@ export default function SettingsPage() {
     const [saved, setSaved] = useState(false);
 
     useEffect(() => {
-        setApiKeyState(getApiKey());
+        const key = localStorage.getItem('gemini_api_key');
+        if (key) setApiKeyState(key);
     }, []);
 
     const handleSave = () => {
-        setApiKey(apiKey);
+        localStorage.setItem('gemini_api_key', apiKey.trim());
         setSaved(true);
         setTimeout(() => setSaved(false), 2000);
     };
@@ -33,20 +33,20 @@ export default function SettingsPage() {
 
                 <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6">
                     <div className="flex items-center gap-3 mb-4">
-                        <Key className="text-yellow-500" size={24} />
-                        <h2 className="text-lg font-bold">API Ключ OpenRouter</h2>
+                        <Key className="text-green-500" size={24} />
+                        <h2 className="text-lg font-bold">API Ключ Google Gemini</h2>
                     </div>
 
                     <p className="text-neutral-400 text-sm mb-4">
-                        Для работы переводов нужен API ключ от OpenRouter.
-                        Получите его бесплатно на <a href="https://openrouter.ai" target="_blank" className="text-blue-400 underline">openrouter.ai</a>
+                        Для работы переводов нужен API ключ от Google Gemini.
+                        Получите его бесплатно на <a href="https://aistudio.google.com/app/apikey" target="_blank" className="text-green-400 underline">Google AI Studio</a>
                     </p>
 
                     <input
                         type="password"
                         value={apiKey}
                         onChange={(e) => setApiKeyState(e.target.value)}
-                        placeholder="sk-or-v1-..."
+                        placeholder="AIzaSy..."
                         className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all mb-4"
                     />
 
